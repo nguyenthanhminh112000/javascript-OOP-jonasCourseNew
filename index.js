@@ -18,18 +18,33 @@
 // console.log(minh.__proto__.__proto__.__proto__);
 
 //////////////////////////////////////////// PROTOTYPAL INHERITANCE ON BUILD-IN OBJECTS
-const arr = [1, 2, 3];
-console.log(arr);
-console.log(arr.hasOwnProperty('length'));
-console.log(arr.hasOwnProperty('2'));
-console.log(arr.__proto__.__proto__.__proto__);
+// const arr = [1, 2, 3];
+// console.log(arr);
+// console.log(arr.hasOwnProperty('length'));
+// console.log(arr.hasOwnProperty('2'));
+// console.log(arr.__proto__.__proto__.__proto__);
 
-const func = () => {
-  console.log('function');
-};
+// const func = () => {
+//   console.log('function');
+// };
 
-console.dir(func);
-console.log(func.hasOwnProperty('arguments'));
-console.log(func.hasOwnProperty('caller'));
-console.log(func.hasOwnProperty('name'));
-console.log(func.hasOwnProperty('length'));
+// console.dir(func);
+// console.log(func.hasOwnProperty('arguments'));
+// console.log(func.hasOwnProperty('caller'));
+// console.log(func.hasOwnProperty('name'));
+// console.log(func.hasOwnProperty('length'));
+
+//////////////////////////////////////////// ES6 CLASSES
+class PersonCl {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  calAgeVersion2() {
+    console.log(this.age);
+  }
+}
+PersonCl.prototype.lastName = 'Nguyen';
+const johnDNguyen = new PersonCl('John Davidson', 21);
+console.log(johnDNguyen);
+console.log(johnDNguyen.__proto__ === PersonCl.prototype);

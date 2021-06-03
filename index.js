@@ -114,34 +114,45 @@
 // console.log(jessica.name);
 // console.log(jessica.age);
 
-////////////////////////////////////////// STATIC METHOD & PROPERTY
+// ////////////////////////////////////////// STATIC METHOD & PROPERTY
 
-function Person(name, age) {
-  this.name = name;
-  this.age = age;
-}
-Person.greet = function () {
-  console.log('Greet from Person static method');
-  console.log(this);
+// function Person(name, age) {
+//   this.name = name;
+//   this.age = age;
+// }
+// Person.greet = function () {
+//   console.log('Greet from Person static method');
+//   console.log(this);
+// };
+// const john = new Person('john d nguyen', 20);
+// Person.greet();
+// Person.namee = 'minh';
+// console.log(Person.namee);
+// console.log(john);
+
+// class PersonCl {
+//   static greet() {
+//     console.log(`Hello everyone`);
+//   }
+//   static namee = 'minh';
+//   static greetVersion2 = function () {
+//     console.log('Hello everyone version 2');
+//   };
+// }
+
+// const person1 = new PersonCl();
+// console.log(person1);
+// PersonCl.greet();
+// PersonCl.greetVersion2();
+// console.log(PersonCl.namee);
+
+////////////////////////////////////////// OBJECT.CREATE()
+const personPrototype = {
+  calcAge() {
+    return this.age;
+  },
+  nameee: 'Minh',
 };
-const john = new Person('john d nguyen', 20);
-Person.greet();
-Person.namee = 'minh';
-console.log(Person.namee);
-console.log(john);
 
-class PersonCl {
-  static greet() {
-    console.log(`Hello everyone`);
-  }
-  static namee = 'minh';
-  static greetVersion2 = function () {
-    console.log('Hello everyone version 2');
-  };
-}
-
-const person1 = new PersonCl();
-console.log(person1);
-PersonCl.greet();
-PersonCl.greetVersion2();
-console.log(PersonCl.namee);
+const john = Object.create(personPrototype);
+john.fullName = 'Nguyen';

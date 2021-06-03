@@ -34,7 +34,51 @@
 // console.log(func.hasOwnProperty('name'));
 // console.log(func.hasOwnProperty('length'));
 
-//////////////////////////////////////////// ES6 CLASSES
+// //////////////////////////////////////////// ES6 CLASSES
+// class PersonCl {
+//   constructor(name, age) {
+//     this.name = name;
+//     this.age = age;
+//   }
+//   calAgeVersion2() {
+//     console.log(this.age);
+//   }
+// }
+// PersonCl.prototype.lastName = 'Nguyen';
+// const johnDNguyen = new PersonCl('John Davidson', 21);
+// console.log(johnDNguyen);
+// console.log(johnDNguyen.__proto__ === PersonCl.prototype);
+
+////////////////////////////////////////// GETTERS AND SETTERS
+// const john = {
+//   name: 'John',
+//   lastName: 'Nguyen',
+//   properties: ['house-284 Tran Phu'],
+
+//   get getProp() {
+//     return this.properties;
+//   },
+
+//   set setProp(property) {
+//     this.properties.push(property);
+//   },
+
+//   getProps: function () {
+//     return this.properties;
+//   },
+//   setProps: function (property) {
+//     this.properties.push(property);
+//   },
+// };
+// console.log(john);
+// console.log(john.getProp);
+// john.setProp = 'land-Ngo Quyen';
+// console.log(john);
+// console.log(john.getProps());
+// john.setProps('land-Hung Loc');
+// console.log(john);
+// console.log(john.hasOwnProperty('setProp'));
+// console.log(john.hasOwnProperty('setProp'));
 class PersonCl {
   constructor(name, age) {
     this.name = name;
@@ -43,8 +87,29 @@ class PersonCl {
   calAgeVersion2() {
     console.log(this.age);
   }
+
+  // get age() {
+  //   return this._age;
+  // }
+
+  set age(age) {
+    this._age = age;
+  }
+
+  // get name() {
+  //   return this._name;
+  // }
+
+  set name(name) {
+    if (name.includes(' ')) {
+      this._name = name;
+    } else {
+      console.log(`${name} isn't a fullname`);
+    }
+  }
 }
-PersonCl.prototype.lastName = 'Nguyen';
-const johnDNguyen = new PersonCl('John Davidson', 21);
-console.log(johnDNguyen);
-console.log(johnDNguyen.__proto__ === PersonCl.prototype);
+
+const jessica = new PersonCl('Jessica', 20);
+console.log(jessica);
+console.log(jessica.name);
+console.log(jessica.age);

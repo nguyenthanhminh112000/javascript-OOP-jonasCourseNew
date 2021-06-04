@@ -226,22 +226,58 @@
 // console.log(student1.calcAge());
 // console.dir(StudentCl);
 
-////////////////////////////////////////// INHERITANCE BETWEEN CLASSES "OBJECT.CREATE VERSION"
-const prototypeOfPerson = {
-  calcAge: function () {
-    return 2021 - this.yearOfBirth;
-  },
-  init: function (name, yearOfBirth) {
-    this.name = name;
-    this.yearOfBirth = yearOfBirth;
-  },
-};
+// ////////////////////////////////////////// INHERITANCE BETWEEN CLASSES "OBJECT.CREATE VERSION"
+// const prototypeOfPerson = {
+//   calcAge: function () {
+//     return 2021 - this.yearOfBirth;
+//   },
+//   init: function (name, yearOfBirth) {
+//     this.name = name;
+//     this.yearOfBirth = yearOfBirth;
+//   },
+// };
 
-const john = Object.create(prototypeOfPerson);
-const prototypeOfStudent = Object.create(prototypeOfPerson);
-console.log(john);
+// const john = Object.create(prototypeOfPerson);
+// const prototypeOfStudent = Object.create(prototypeOfPerson);
+// console.log(john);
 
-console.log(prototypeOfPerson);
-console.log(prototypeOfStudent);
-const obj = { name: 'minh' };
-console.log(obj);
+// console.log(prototypeOfPerson);
+// console.log(prototypeOfStudent);
+// const obj = { name: 'minh' };
+// console.log(obj);
+
+////////////////////////////////////////// ENCAPSULATION PROTECTED PROPERTIES AND METHODS
+
+class Account {
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this._pin = pin;
+    this._movements = [];
+    this.locale = navigator.language;
+    console.log(`Thanks for opening an account, ${this.owner}`);
+  }
+  getMovements() {
+    return this._movements;
+  }
+  deposit(val) {
+    this._movements.push(val);
+  }
+  withdraw(val) {
+    this._movements.push(-val);
+  }
+  _approveLoan(val) {
+    return true;
+  }
+  requestLoan(val) {
+    if (this._approveLoan(val)) {
+      this.deposit(val);
+      console.log(`Loan approved`);
+    }
+  }
+}
+
+const johnAccount = new Account('John D Nguyen', 'VND', 100000);
+const movements = johnAccount.getMovements();
+movements = 'stupid';
+console.log(johnAccount);

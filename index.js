@@ -157,31 +157,91 @@
 // const john = Object.create(personPrototype);
 // john.fullName = 'Nguyen';
 
-////////////////////////////////////////// INHERITANCE BETWEEN CLASSES
-function Person(fullName, yearOfBirth) {
-  this.fullName = fullName;
-  this.yearOfBirth = yearOfBirth;
-  this.logFnc = function () {
-    console.log(`Hello from Person`);
-  };
-}
-Person.prototype.calcAge = function () {
-  return 2021 - this.yearOfBirth;
-};
-Person.prototype.somethingWrong = true;
+// ////////////////////////////////////////// INHERITANCE BETWEEN CLASSES
+// function Person(fullName, yearOfBirth) {
+//   this.fullName = fullName;
+//   this.yearOfBirth = yearOfBirth;
+//   this.logFnc = function () {
+//     console.log(`Hello from Person`);
+//   };
+// }
+// Person.prototype.calcAge = function () {
+//   return 2021 - this.yearOfBirth;
+// };
+// Person.prototype.somethingWrong = true;
 
-function Student(fullName, yearOfBirth, course) {
-  Person.call(this, fullName, yearOfBirth);
-  this.course = course;
-}
-Student.prototype = Object.create(Person.prototype);
-Student.prototype.constructor = Student;
-Student.prototype.greetFromStudent = function () {
-  console.log(`Hello from Student`);
+// function Student(fullName, yearOfBirth, course) {
+//   Person.call(this, fullName, yearOfBirth);
+//   this.course = course;
+// }
+// Student.prototype = Object.create(Person.prototype);
+// Student.prototype.constructor = Student;
+// Student.prototype.greetFromStudent = function () {
+//   console.log(`Hello from Student`);
+// };
+
+// const johnDNguyen = new Student('John D Nguyen', 2000, 'Harvard CS courses');
+// console.log(johnDNguyen);
+// console.log(johnDNguyen instanceof Student);
+// console.log(johnDNguyen instanceof Person);
+// console.log(johnDNguyen instanceof Object);
+
+// ////////////////////////////////////////// INHERITANCE BETWEEN CLASSES "CLASSES VERSION"
+// class PersonCl {
+//   constructor(fullName, age) {
+//     this.fullName = fullName;
+//     this.age = age;
+//     this.getAge = function () {
+//       return this.age;
+//     };
+//   }
+//   getAge2 = function () {
+//     return this.age;
+//   };
+//   getName() {
+//     return this.fullName;
+//   }
+
+//   calcAge() {
+//     console.log(`calcAge from PersonCL`);
+//   }
+//   static staticMethod1() {
+//     console.log(`Static method 1 from PersonCl`);
+//   }
+// }
+
+// class StudentCl extends PersonCl {
+//   constructor(fullName, age, course) {
+//     super(fullName, age);
+//     this.course = course;
+//   }
+//   calcAge(StudentCl) {
+//     console.log(`calcAge from StudentCl`);
+//   }
+// }
+
+// const johnDNguyen = new PersonCl('John Dinhson Nguyen', 21);
+// const student1 = new StudentCl('Student 1');
+// console.log(johnDNguyen);
+// console.log(student1.calcAge());
+// console.dir(StudentCl);
+
+////////////////////////////////////////// INHERITANCE BETWEEN CLASSES "OBJECT.CREATE VERSION"
+const prototypeOfPerson = {
+  calcAge: function () {
+    return 2021 - this.yearOfBirth;
+  },
+  init: function (name, yearOfBirth) {
+    this.name = name;
+    this.yearOfBirth = yearOfBirth;
+  },
 };
 
-const johnDNguyen = new Student('John D Nguyen', 2000, 'Harvard CS courses');
-console.log(johnDNguyen);
-console.log(johnDNguyen instanceof Student);
-console.log(johnDNguyen instanceof Person);
-console.log(johnDNguyen instanceof Object);
+const john = Object.create(prototypeOfPerson);
+const prototypeOfStudent = Object.create(prototypeOfPerson);
+console.log(john);
+
+console.log(prototypeOfPerson);
+console.log(prototypeOfStudent);
+const obj = { name: 'minh' };
+console.log(obj);

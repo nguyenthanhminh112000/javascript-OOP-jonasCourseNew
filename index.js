@@ -248,36 +248,54 @@
 
 ////////////////////////////////////////// ENCAPSULATION PROTECTED PROPERTIES AND METHODS
 
+// PUBLIC FIELD
+// PRIVATE FIELD
+// PUBLIC METHOD
+// PRIVATE METHOD
 class Account {
+  // public field
+  locale = navigator.language;
+  //  private field
+  #movements = [];
+  #pin;
+
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
-    this._pin = pin;
-    this._movements = [];
-    this.locale = navigator.language;
+    this.#pin = pin;
+    // this._movements = [];
+    // this.locale = navigator.language;
     console.log(`Thanks for opening an account, ${this.owner}`);
   }
+  // public methods
   getMovements() {
-    return this._movements;
+    return this.#movements;
   }
   deposit(val) {
-    this._movements.push(val);
+    this.#movements.push(val);
   }
   withdraw(val) {
-    this._movements.push(-val);
+    this.#movements.push(-val);
   }
-  _approveLoan(val) {
-    return true;
-  }
+
   requestLoan(val) {
-    if (this._approveLoan(val)) {
+    if (this.#approveLoan(val)) {
       this.deposit(val);
       console.log(`Loan approved`);
     }
   }
+  // private methods
+  #approveLoan(val) {
+    return true;
+  }
 }
 
 const johnAccount = new Account('John D Nguyen', 'VND', 100000);
-const movements = johnAccount.getMovements();
-movements = 'stupid';
+const johnAccountt = new Account('John D Nguyen', 'VND', 100000);
+console.log(johnAccount.getMovements());
+johnAccount.requestLoan(1000);
+johnAccount.requestLoan(2000);
 console.log(johnAccount);
+console.log(johnAccountt);
+
+

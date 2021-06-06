@@ -246,12 +246,12 @@
 // const obj = { name: 'minh' };
 // console.log(obj);
 
-////////////////////////////////////////// ENCAPSULATION PROTECTED PROPERTIES AND METHODS
+// ////////////////////////////////////////// ENCAPSULATION PROTECTED PROPERTIES AND METHODS
 
-// PUBLIC FIELD
-// PRIVATE FIELD
-// PUBLIC METHOD
-// PRIVATE METHOD
+// // PUBLIC FIELD
+// // PRIVATE FIELD
+// // PUBLIC METHOD
+// // PRIVATE METHOD
 class Account {
   // public field
   locale = navigator.language;
@@ -273,15 +273,18 @@ class Account {
   }
   deposit(val) {
     this.#movements.push(val);
+    return this;
   }
   withdraw(val) {
     this.#movements.push(-val);
+    return this;
   }
 
   requestLoan(val) {
     if (this.#approveLoan(val)) {
       this.deposit(val);
       console.log(`Loan approved`);
+      return this;
     }
   }
   // private methods
@@ -290,12 +293,21 @@ class Account {
   }
 }
 
+// const johnAccount = new Account('John D Nguyen', 'VND', 100000);
+// const johnAccountt = new Account('John D Nguyen', 'VND', 100000);
+// console.log(johnAccount.getMovements());
+// johnAccount.requestLoan(1000);
+// johnAccount.requestLoan(2000);
+// console.log(johnAccount);
+// console.log(johnAccountt);
+
+////////////////////////////////////////// CHAINING METHODS
 const johnAccount = new Account('John D Nguyen', 'VND', 100000);
-const johnAccountt = new Account('John D Nguyen', 'VND', 100000);
-console.log(johnAccount.getMovements());
-johnAccount.requestLoan(1000);
-johnAccount.requestLoan(2000);
 console.log(johnAccount);
-console.log(johnAccountt);
-
-
+johnAccount
+  .deposit(200000)
+  .withdraw(200000)
+  .deposit(500000)
+  .requestLoan(12000000);
+console.log(johnAccount);
+console.log(johnAccount.getMovements());
